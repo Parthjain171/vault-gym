@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VAULT — Gym Concept 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0d;--bg2:#121216;--card:#17171c;--line:#26262e;
+  --text:#f2f2f4;--muted:#9a9aa6;--gold:#d4af37;--gold2:#f3d77a;--red:#e04b3a;--green:#3ec98a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.display{font-family:"Bebas Neue",Inter,sans-serif;letter-spacing:.04em;font-weight:400}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+/* hero */
+.hero{position:relative;padding:90px 0 70px;overflow:hidden;background:
+ radial-gradient(900px 400px at 15% 0%,rgba(212,175,55,.18),transparent 60%),
+ radial-gradient(700px 400px at 90% 100%,rgba(224,75,58,.12),transparent 60%),var(--bg)}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%)}
+.hero .wrap{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:600}
+.eyebrow:before{content:"";width:34px;height:1px;background:var(--gold)}
+.hero h1{font-size:clamp(72px,14vw,170px);line-height:.9;margin:18px 0 10px;background:linear-gradient(180deg,#fff 20%,#c9c9cf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 span{color:var(--gold);-webkit-text-fill-color:var(--gold)}
+.tag{font-size:clamp(18px,2.6vw,26px);color:var(--muted);max-width:720px}
+.tag b{color:var(--text);font-weight:600}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:44px}
+.pill{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:rgba(255,255,255,.02)}
+.pill .n{font-family:"Bebas Neue";font-size:34px;color:var(--gold);line-height:1}
+.pill .l{font-size:14px;color:var(--muted);margin-top:4px}
+/* sections */
+section{padding:64px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:28px;flex-wrap:wrap}
+.num{font-family:"Bebas Neue";font-size:20px;color:var(--gold);letter-spacing:.2em}
+h2{font-size:clamp(36px,5vw,56px);line-height:1}
+.lead{color:var(--muted);font-size:17px;max-width:800px;margin-bottom:28px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.card h3{font-size:26px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15px}
+.card ul{margin-top:10px;padding-left:0;list-style:none}
+.card li{font-size:14.5px;color:#d6d6dc;padding:5px 0 5px 18px;position:relative}
+.card li:before{content:"";position:absolute;left:0;top:13px;width:7px;height:7px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+.badge{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:4px 9px;border-radius:999px;margin-bottom:10px}
+.hot{background:rgba(224,75,58,.15);color:#ff8a7a}
+.new{background:rgba(62,201,138,.15);color:var(--green)}
+.core{background:rgba(212,175,55,.15);color:var(--gold2)}
+.intl{background:rgba(120,160,255,.15);color:#9db5ff}
+/* floor plan */
+.plan{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:88px;gap:8px;margin:20px 0}
+.zone{border-radius:10px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(255,255,255,.08);font-size:13px}
+.zone b{font-family:"Bebas Neue";font-size:20px;letter-spacing:.05em;display:block;line-height:1}
+.zone small{color:rgba(255,255,255,.7);font-size:12px}
+.z1{background:#2a1f12;grid-column:span 5;grid-row:span 2}
+.z2{background:#1b2a22;grid-column:span 4;grid-row:span 2}
+.z3{background:#2a1a1a;grid-column:span 3;grid-row:span 1}
+.z4{background:#1c2232;grid-column:span 3;grid-row:span 2}
+.z5{background:#2b2434;grid-column:span 3;grid-row:span 1}
+.z6{background:#1e2a2f;grid-column:span 3;grid-row:span 1}
+.z7{background:#2a2a1a;grid-column:span 3;grid-row:span 1}
+.z8{background:#1f1f24;grid-column:span 3;grid-row:span 1}
+.z9{background:#231c2a;grid-column:span 3;grid-row:span 1}
+.z10{background:#1a1f1a;grid-column:span 6;grid-row:span 1}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:10px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+td:first-child{font-weight:600;color:var(--text)}
+td{color:#cfcfd6}
+.note{border-left:3px solid var(--gold);padding:14px 18px;background:rgba(212,175,55,.06);border-radius:0 12px 12px 0;color:#e6e6ea;font-size:15px;margin:22px 0}
+/* vs table */
+.vs td:nth-child(2),.vs td:nth-child(3){color:var(--muted)}
+.vs td:nth-child(4){color:var(--gold2);font-weight:600}
+/* timeline */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;counter-reset:s}
+.step{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--bg2)}
+.step:before{counter-increment:s;content:"0" counter(s);font-family:"Bebas Neue";font-size:40px;color:var(--gold);line-height:1;display:block;margin-bottom:8px}
+.step h4{font-size:16px;margin-bottom:6px}
+.step p{font-size:14px;color:var(--muted)}
+footer{padding:40px 0 60px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+footer a{color:#b9b9c4}
+@media(max-width:720px){.plan{grid-auto-rows:78px}.zone{padding:9px;font-size:12px}.zone b{font-size:16px}.z1,.z2,.z4{grid-column:span 6}.z3,.z5,.z6,.z7,.z8,.z9{grid-column:span 6}.z10{grid-column:span 12}}
+@media print{body{background:#fff;color:#111}.card,.step{background:#fff;border-color:#ddd}.hero{background:#fff}.hero h1{color:#111;-webkit-text-fill-color:#111}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Concept Brief · October 2026</div>
+    <h1>VAULT<span>.</span></h1>
+    <p class="tag">A performance and recovery club built for how people train in 2026: <b>less punishment, more movement</b>. Hyrox-ready, reformer-equipped, martial arts and gymnastics on the floor, and a recovery wing that Anytime Fitness and Cult simply do not have.</p>
+    <div class="pillars">
+      <div class="pill"><div class="n">6</div><div class="l">Training departments under one roof</div></div>
+      <div class="pill"><div class="n">10</div><div class="l">Purpose-built zones, each with its own floor, sound and light</div></div>
+      <div class="pill"><div class="n">25%</div><div class="l">Floor area given to recovery and mobility (industry is moving from 5–10% to 20–30%)</div></div>
+      <div class="pill"><div class="n">2×</div><div class="l">India's fitness market is projected to double by 2030 (₹16,200 cr → ₹37,700 cr)</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="num">01</span><h2>The shift you noticed is real</h2></div>
+    <p class="lead">Heavy, grind-only training is losing its monopoly. The growth in 2026 is in formats that build strength <em>and</em> keep the body mobile, joint-friendly and recoverable. Every major chain is reacting to it.</p>
+    <div class="grid g3">
+      <div class="card"><span class="badge hot">Trend</span><h3>Hybrid over heavy</h3><p>Hyrox-style training (run + functional stations) is the fastest-growing search term in fitness, up over 120% year on year. Delhi's second Hyrox event pulled 2,600+ athletes, 50% more than the Mumbai debut.</p></div>
+      <div class="card"><span class="badge hot">Trend</span><h3>Low-impact strength</h3><p>Reformer Pilates, mobility circuits and eccentric training are the year's headline formats. F45 launched FS8 (Pilates + tone + yoga) and Solidcore added a heated strength class. Even big-box chains like Crunch are adding 10+ reformer studios.</p></div>
+      <div class="card"><span class="badge hot">Trend</span><h3>Recovery is a product</h3><p>Cold plunge, infrared sauna and compression boots have moved from elite-athlete rooms into premium Indian gyms and are now sold as standalone bookable sessions. Orangetheory's CEO named recovery and stretch classes as the next expansion.</p></div>
+    </div>
+    <div class="note"><b>What this means for VAULT:</b> do not compete on "more machines". Compete on <b>departments</b> (skills people cannot get at Cult) and on <b>recovery</b> (a wing nobody in the city has). That is what "a level above Anytime and Cult" actually looks like.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="num">02</span><h2>New exercises and formats to run</h2></div>
+    <p class="lead">Mapped to your six questions. "Hot" is what is exploding now, "New" is what is just arriving in India, "Core" is what the floor cannot work without.</p>
+    <div class="grid g3">
+      <div class="card"><span class="badge hot">Hot</span><h3>Hyrox simulation</h3><ul><li>8 × 1 km run + 8 stations: SkiErg, sled push, sled pull, burpee broad jumps, rowing, farmers carry, sandbag lunges, wall balls</li><li>Weekly "Vault Race" class, monthly timed sim, team of 2 doubles format</li><li>Register as an official Hyrox affiliate gym (Jetts just opened the first Hyrox Training Club in Vasant Kunj, Delhi)</li></ul></div>
+      <div class="card"><span class="badge hot">Hot</span><h3>Reformer Pilates</h3><ul><li>6 to 10 reformers in a 40–60 sqm enclosed room</li><li>Formats: Reformer Strength, Reformer Flow (mobility), Athlete Reformer for lifters</li><li>Biggest male growth format of 2026 alongside Hyrox and calisthenics</li></ul></div>
+      <div class="card"><span class="badge new">New</span><h3>Adult gymnastics</h3><ul><li>Handstands, rings, bridges, tumbling basics on a sprung floor</li><li>Gyms offering adult classes in the US went from 231 (2015) to 590 after the 2024 Olympics</li><li>Class formula that works: 15 min strength circuit, 30 min flexibility, 15 min floor skills</li></ul></div>
+      <div class="card"><span class="badge new">New</span><h3>Martial arts</h3><ul><li>Boxing fundamentals, Muay Thai pads, no-gi grappling / BJJ, MMA conditioning</li><li>Beginner-first programming; belt-free "skills ladder" so gym members are not intimidated</li><li>Martial arts academies are one of the three boutique formats urban Indians are moving to, alongside climbing and specialised yoga</li></ul></div>
+      <div class="card"><span class="badge core">Core</span><h3>Calisthenics + Animal Flow</h3><ul><li>Ring and bar skills, levers, muscle-ups; "Calisthenics rings" hit its all-time search peak in Jan–Mar 2026</li><li>Animal Flow and ground-based mobility as a daily 30-minute class</li><li>Needs an outdoor-style rig indoors, not a cable machine</li></ul></div>
+      <div class="card"><span class="badge core">Core</span><h3>Mobility and eccentric strength</h3><ul><li>Loaded stretching, Jefferson curls, ATG split squats, Nordic curls, tibialis work</li><li>"Knees Over Toes" style longevity strength for the 30–50 age group</li><li>Daily 7 am and 7 pm mobility class is the easiest retention tool in the building</li></ul></div>
+      <div class="card"><span class="badge intl">From abroad</span><h3>Strength-cardio fusion classes</h3><ul><li>Barry's model: treadmill intervals + heavy floor strength in 50 minutes</li><li>Solidcore model: slow, heated, 50-minute resistance class</li><li>Interval walking and incline "12-3-30" style low-impact cardio for the recovery-minded</li></ul></div>
+      <div class="card"><span class="badge intl">From abroad</span><h3>Racquet and run club</h3><ul><li>Padel and pickleball are the two fastest-growing social sports; even UK gyms are pairing padel with reformer studios</li><li>If land allows, one covered padel court is the strongest social hook in the city</li><li>Weekly VAULT run club (Saturday 6 am) feeds the Hyrox pipeline</li></ul></div>
+      <div class="card"><span class="badge intl">From abroad</span><h3>Kettlebell, rucking, sandbag</h3><ul><li>Kettlebell flow and StrongFirst-style technique classes</li><li>Rucking (weighted walks) as a Sunday community event</li><li>Sandbag and odd-object strength ties directly into Hyrox stations</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="num">03</span><h2>Room allocation by need</h2></div>
+    <p class="lead">The principle premium clubs use now: <b>one need, one room</b>. Each zone gets its own flooring, acoustics and lighting. Quiet work (reformer, recovery) is never next to loud work (sleds, drops, bags). Illustrative plan for roughly 10,000–12,000 sq ft; scale proportionally.</p>
+
+    <div class="plan">
+      <div class="zone z1"><b>Strength Floor</b><small>Racks, platforms, dumbbells to 50 kg, cable towers · ~2,400 sq ft · rubber + platforms · music loud</small></div>
+      <div class="zone z2"><b>Hyrox / Functional Turf</b><small>20–25 m sled lane, SkiErgs, rowers, wall ball targets · ~1,500 sq ft · turf · warm lighting</small></div>
+      <div class="zone z3"><b>Combat Room</b><small>Mat + bag rack, 8 heavy bags · ~800 sq ft</small></div>
+      <div class="zone z4"><b>Recovery Wing</b><small>Sauna (8–10 pax), 2 cold plunges, compression boots, red light, stretch lounge · ~1,200 sq ft · dim, silent</small></div>
+      <div class="zone z5"><b>Reformer Studio</b><small>8 reformers · ~550 sq ft · enclosed</small></div>
+      <div class="zone z6"><b>Movement Studio</b><small>Gymnastics / calisthenics rig, sprung floor · ~900 sq ft</small></div>
+      <div class="zone z7"><b>Cardio Deck</b><small>Curved treads, bikes, stairs · ~700 sq ft</small></div>
+      <div class="zone z8"><b>Mobility Studio</b><small>Yoga, Animal Flow, stretch · ~600 sq ft</small></div>
+      <div class="zone z9"><b>Performance Lab</b><small>Body comp, VO2, assessments · ~250 sq ft</small></div>
+      <div class="zone z10"><b>Lounge · Café · Lockers · Reception</b><small>Protein bar, co-working corner, premium changing rooms · ~1,500 sq ft</small></div>
+    </div>
+
+    <table>
+      <thead><tr><th>Zone</th><th>Who it serves</th><th>Floor / finish</th><th>Design rule</th></tr></thead>
+      <tbody>
+        <tr><td>Strength Floor</td><td>Lifters, athletes, PT clients</td><td>20 mm rubber, drop zones with 40 mm tiles, Olympic platforms</td><td>Semi-private PT pods on one edge; negative space between racks, not a wall of machines</td></tr>
+        <tr><td>Hyrox / Functional Turf</td><td>Hybrid athletes, group classes</td><td>Synthetic turf with 20 m sled lane, distance markings</td><td>Straight lane along the longest wall; wall-ball targets at 9 ft and 10 ft</td></tr>
+        <tr><td>Combat Room</td><td>Boxing, Muay Thai, grappling, MMA conditioning</td><td>40 mm tatami or roll-out mats, bag rack on structural beam</td><td>Enclosed; its own ventilation; mirror on one wall only</td></tr>
+        <tr><td>Movement Studio</td><td>Gymnastics, calisthenics, handstand classes</td><td>Sprung floor section + 12 mm mats, wall-mounted rig, rings, parallettes</td><td>Minimum 4.5 m ceiling for rings; crash mats stored on wall</td></tr>
+        <tr><td>Reformer Studio</td><td>Pilates, rehab, low-impact strength</td><td>Timber-look vinyl, 1.2 m between reformers</td><td>Away from sled lane and dumbbell drops; own sound and dimmable light</td></tr>
+        <tr><td>Mobility Studio</td><td>Yoga, Animal Flow, stretch, breathwork</td><td>Cork or warm timber, no mirrors</td><td>Natural light if possible; the "calm room" of the club</td></tr>
+        <tr><td>Recovery Wing</td><td>Everyone, sold as a bookable add-on too</td><td>Stone/tile wet area, timber dry area</td><td>Plan at drawing stage, not leftover space; a filled plunge weighs 700–1,400 kg, check floor load</td></tr>
+        <tr><td>Performance Lab</td><td>Onboarding, quarterly re-tests</td><td>Clinical, bright, private</td><td>Every member tested on day one: this is what makes VAULT feel like a club, not a gym</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="num">04</span><h2>The six departments</h2></div>
+    <p class="lead">This is the new structure premium clubs are moving to. Instead of "trainers on a floor", each department has a head coach, its own programme and its own member events.</p>
+    <div class="grid g3">
+      <div class="card"><h3>1 · Strength &amp; Physique</h3><p>Classic lifting, hypertrophy, powerlifting club, PT. The base that every member expects.</p></div>
+      <div class="card"><h3>2 · Hybrid &amp; Hyrox</h3><p>Race training, run club, engine building. Head coach runs the monthly simulation and takes a team to real Hyrox events in Mumbai, Delhi, Bangalore.</p></div>
+      <div class="card"><h3>3 · Movement &amp; Skills</h3><p>Adult gymnastics, calisthenics, handstands, Animal Flow. The department that gives VAULT an identity Cult cannot copy fast.</p></div>
+      <div class="card"><h3>4 · Combat</h3><p>Boxing, Muay Thai, grappling, self-defence for women, kids' martial arts on weekends (brings in families).</p></div>
+      <div class="card"><h3>5 · Pilates &amp; Mobility</h3><p>Reformer, mat, yoga, loaded stretching, prehab. The low-impact department for the 30–55 age group with the highest spending power.</p></div>
+      <div class="card"><h3>6 · Recovery &amp; Performance</h3><p>Sauna, cold plunge, compression, red light, body composition and VO2 testing, nutrition coaching. Sold both inside membership and as day passes to non-members.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="num">05</span><h2>Why this beats Anytime Fitness and Cult</h2></div>
+    <table class="vs">
+      <thead><tr><th></th><th>Anytime Fitness</th><th>Cult.fit</th><th>VAULT</th></tr></thead>
+      <tbody>
+        <tr><td>Model</td><td>24/7 open gym, franchise, ~170 India sites</td><td>Volume group classes, ~700 sites, ~40% cheaper than rivals</td><td>Members' club: departments, coaches, testing</td></tr>
+        <tr><td>Hyrox / hybrid</td><td>No programme</td><td>HIIT-style only</td><td>Dedicated turf, affiliate status, race team</td></tr>
+        <tr><td>Reformer Pilates</td><td>No</td><td>Few centres, add-on</td><td>Enclosed 8-reformer studio</td></tr>
+        <tr><td>Gymnastics / calisthenics</td><td>No</td><td>No</td><td>Sprung-floor Movement Studio with rig</td></tr>
+        <tr><td>Martial arts</td><td>No</td><td>Boxing-fitness only</td><td>Full Combat Room with grappling mats</td></tr>
+        <tr><td>Recovery</td><td>Hydromassage at best</td><td>No</td><td>Sauna, cold plunge, compression, red light</td></tr>
+        <tr><td>Testing</td><td>Basic InBody</td><td>App metrics</td><td>Day-one body comp + movement screen, quarterly re-test</td></tr>
+        <tr><td>Feel</td><td>Functional, unmanned</td><td>Busy, loud, standardised</td><td>Hospitality-grade finishes, lounge, café</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><b>Positioning line:</b> "Cult gets you to work out. VAULT gets you to <b>move better, recover faster and compete</b>." Pricing sits clearly above both, justified by the recovery wing and the departments, with a mid tier so the Anytime crowd can still step in.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="num">06</span><h2>Design language</h2></div>
+    <div class="grid g3">
+      <div class="card"><h3>Palette</h3><p>Near-black base, warm charcoal, one metallic accent (brass or gold) and raw concrete. Avoid the neon green/orange of volume gyms. A premium club looks like a hotel gym, not a stadium.</p></div>
+      <div class="card"><h3>Light</h3><p>Three moods in one building: cool and bright on the strength floor, warm and dim in the reformer and mobility studios, near-dark with amber in recovery. Lighting is zoned, not uniform.</p></div>
+      <div class="card"><h3>Sound</h3><p>Each studio has its own system. Acoustic panels on the turf and strength walls so the Pilates room stays silent. This single detail separates premium from mid-market.</p></div>
+      <div class="card"><h3>Materials</h3><p>Timber, stone, black steel, leather seating in the lounge. Branded hardware (racks, rigs, reformers) in one colour so the floor reads as one system.</p></div>
+      <div class="card"><h3>Space</h3><p>Negative space between equipment clusters. Semi-private PT pods. Wide circulation so classes can move between turf and strength without crossing lifters.</p></div>
+      <div class="card"><h3>Arrival</h3><p>Reception doubles as a café and protein bar. Members walk past the recovery wing's glass wall on the way in: the product sells itself.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="num">07</span><h2>Membership tiers</h2></div>
+    <div class="grid g3">
+      <div class="card"><span class="badge core">Tier 1</span><h3>Floor</h3><p>Strength floor, cardio deck, functional turf, daily mobility class. Priced just above Anytime Fitness.</p></div>
+      <div class="card"><span class="badge hot">Tier 2</span><h3>Club</h3><p>Everything in Floor plus all department classes (Hyrox, Combat, Movement, Reformer), quarterly testing, 4 recovery sessions a month.</p></div>
+      <div class="card"><span class="badge new">Tier 3</span><h3>Vault</h3><p>Unlimited recovery, 2 PT sessions a month, nutrition coaching, race-team entry, guest passes, priority booking. Limited to a capped number of members.</p></div>
+    </div>
+    <p class="lead" style="margin-top:22px">Plus day passes for recovery and drop-in Hyrox sims so non-members taste the premium side first, which is how most premium clubs now convert.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="num">08</span><h2>Roll-out plan</h2></div>
+    <div class="steps">
+      <div class="step"><h4>Lock the zones</h4><p>Finalise floor plan with recovery and reformer rooms drawn first (they have the hardest MEP and acoustic needs). Check floor load for plunges.</p></div>
+      <div class="step"><h4>Hire the six heads</h4><p>One head coach per department. The Movement and Combat heads are the hardest to find; start early.</p></div>
+      <div class="step"><h4>Equip in this order</h4><p>Strength and turf (revenue day one), then reformers and recovery (differentiators), then combat and gymnastics rig.</p></div>
+      <div class="step"><h4>Launch events</h4><p>Open with a Hyrox simulation, a free recovery weekend and a handstand workshop. Apply for Hyrox affiliate status.</p></div>
+      <div class="step"><h4>Measure</h4><p>Track class fill rate per department monthly. Expand what fills, cut what does not, within 90 days.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Sources used for this brief:</b>
+    <a href="https://www.risingtrends.co/trends/fitness-trends-2026">Rising Trends 2026</a> ·
+    <a href="https://www.eosfitness.com/blog/2026-fitness-trends">EōS Fitness trends</a> ·
+    <a href="https://womensfitness.co.uk/fitness/wellness-fitness-trends-2026-from-interval-walking-to-hybrid-training-and-recovery-culture/">Women's Fitness 2026</a> ·
+    <a href="https://warrioraddict.com/blogs/fitness-activewear-news/mens-fitness-trends-2026">Men's trends: Pilates, Padel, Calisthenics, Hyrox</a> ·
+    <a href="https://www.hollywoodreporterindia.com/amp/story/wellness/from-hyrox-to-hormones-the-wholeness-economy-that-took-over-india-in-2026">India's 2026 wholeness economy</a> ·
+    <a href="https://openthemagazine.com/india/not-just-another-gym-trend-why-hyrox-is-the-fitness-race-india-cannot-stop-talking-about">Hyrox in India (Open)</a> ·
+    <a href="https://bullrockfitness.com/hyrox-style-training-zones/">Hyrox zones in premium Indian gyms</a> ·
+    <a href="https://www.grabon.in/indulge/tech/fitness-industry-statistics/">India fitness statistics</a> ·
+    <a href="https://ateonlineshop.com/blogs/best-gym-equipment-in-india-2026-complete-buyers-guide/best-gym-equipment-india">India market projection</a> ·
+    <a href="https://www.healthandfitnessbusiness.org/dec2025/feature-gym-design">Gym design feature</a> ·
+    <a href="https://www.blueskyfitsupply.com/blogs/news/commercial-gym-recovery-zone-design-cold-plunge-sauna">Recovery zone design</a> ·
+    <a href="https://optimaldsi.com/commercial-gym-design-guide-how-to-ideas-layout-more/">Commercial gym design guide</a> ·
+    <a href="https://www.skelcore.com/blogs/news/designing-a-pilates-studio-within-a-gym-what-to-consider-a-practical-guide-for-facility-owners">Pilates studio inside a gym</a> ·
+    <a href="https://www.vervefitness.com.au/blogs/all/adding-reformer-pilates-to-an-existing-gym">Reformer room sizing</a> ·
+    <a href="https://insider.fitt.co/big-box-gyms-bring-reformer-pilates-in-house-crunch-fitness/">Big-box gyms add reformer</a> ·
+    <a href="https://time.com/7019566/adult-gymnastics-class/">Adult gymnastics (Time)</a> ·
+    <a href="https://gravity.fitness/blogs/news/calisthenics-in-2026-why-everyone-is-talking-about-it">Calisthenics 2026</a> ·
+    <a href="https://athletechnews.com/orangetheory-f45-solidcore-barrys-boutique-fitness-ceos-state-of-the-industry/">Boutique CEOs on the industry</a> ·
+    <a href="https://www.forbes.com/sites/kimberly-wilson/2026/10/20/can-solidcore-add-a-second-workout-without-losing-its-cult-following/">Solidcore adds strength (Forbes)</a></p>
+    <p style="margin-top:12px">Square-footage figures are planning estimates from industry sources and vary with site; confirm with the architect and MEP engineer.</p>
+  </div>
+</footer>
+</body>
+</html>

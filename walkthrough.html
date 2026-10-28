@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VAULT — Animated Walkthrough</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0d;--gold:#d4af37;--gold2:#f3d77a;--muted:#9a9aa6;--line:#2a2a33;--red:#e04b3a;--green:#3ec98a;--blue:#7fa3ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:#f2f2f4;font-family:Inter,sans-serif;overflow:hidden;height:100vh}
+h1,h2,.d{font-family:"Bebas Neue";letter-spacing:.05em;font-weight:400}
+.stage{position:relative;width:100vw;height:100vh;display:grid;place-items:center;background:
+ radial-gradient(900px 500px at 20% 0%,rgba(212,175,55,.16),transparent 60%),
+ radial-gradient(700px 500px at 90% 100%,rgba(224,75,58,.10),transparent 60%),var(--bg)}
+.stage:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px}
+.scene{position:absolute;inset:0;display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .8s}
+.scene.on{opacity:1;pointer-events:auto}
+.inner{width:min(1100px,92vw)}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:600}
+h1{font-size:clamp(90px,18vw,220px);line-height:.9}
+h1 span{color:var(--gold)}
+h2{font-size:clamp(40px,6vw,72px);line-height:1;margin-bottom:18px}
+.sub{color:var(--muted);font-size:clamp(16px,2vw,22px);max-width:760px}
+/* anim helpers */
+.on .rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.on .d1{animation-delay:.2s}.on .d2{animation-delay:.5s}.on .d3{animation-delay:.8s}.on .d4{animation-delay:1.1s}.on .d5{animation-delay:1.4s}.on .d6{animation-delay:1.7s}.on .d7{animation-delay:2s}.on .d8{animation-delay:2.3s}.on .d9{animation-delay:2.6s}.on .d10{animation-delay:2.9s}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.rise{opacity:0}
+/* floor plan */
+.plan{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(60px,9vh,96px);gap:8px;margin-top:22px}
+.zone{border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(255,255,255,.1);font-size:12px;color:rgba(255,255,255,.75);opacity:0;transform:scale(.92)}
+.on .zone{animation:pop .6s cubic-bezier(.2,.8,.2,1.2) both}
+@keyframes pop{to{opacity:1;transform:none}}
+.zone b{font-family:"Bebas Neue";font-size:clamp(14px,1.8vw,22px);color:#fff;letter-spacing:.05em;line-height:1}
+.z1{background:#2a1f12;grid-column:span 5;grid-row:span 2}.z2{background:#1b2a22;grid-column:span 4;grid-row:span 2}.z3{background:#2a1a1a;grid-column:span 3}.z4{background:#1c2232;grid-column:span 3;grid-row:span 2}.z5{background:#2b2434;grid-column:span 3}.z6{background:#1e2a2f;grid-column:span 3}.z7{background:#2a2a1a;grid-column:span 3}.z8{background:#1f1f24;grid-column:span 3}.z9{background:#231c2a;grid-column:span 3}.z10{background:#1a1f1a;grid-column:span 6}
+/* flowchart */
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:28px}
+.node{border:1px solid var(--line);background:#15151a;border-radius:14px;padding:16px 18px;min-width:150px;flex:1}
+.node .d{font-size:22px;color:var(--gold2)}
+.node p{font-size:13px;color:var(--muted);margin-top:4px}
+.arrow{width:38px;height:2px;background:var(--gold);position:relative;flex:none;transform-origin:left;opacity:0}
+.on .arrow{animation:grow .5s both}
+@keyframes grow{from{transform:scaleX(0);opacity:0}to{transform:none;opacity:1}}
+.arrow:after{content:"";position:absolute;right:-1px;top:-5px;border:6px solid transparent;border-left-color:var(--gold)}
+/* dept wheel */
+.wheel{position:relative;width:min(560px,80vw);height:min(560px,80vw);margin:20px auto 0}
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f3d77a,#9a7a1c);display:grid;place-items:center;font-family:"Bebas Neue";font-size:44px;color:#111;box-shadow:0 0 60px rgba(212,175,55,.45)}
+.spoke{position:absolute;left:50%;top:50%;width:150px;margin:-34px 0 0 -75px;text-align:center;padding:12px 10px;border-radius:14px;background:#15151a;border:1px solid var(--line);font-size:13px}
+.spoke b{display:block;font-family:"Bebas Neue";font-size:20px;color:var(--gold2);letter-spacing:.05em}
+.spoke small{color:var(--muted)}
+.on .spoke{animation:orbit .9s cubic-bezier(.2,.8,.2,1.1) both}
+@keyframes orbit{from{opacity:0;transform:translate(0,0) scale(.6)}to{opacity:1}}
+.spoke{opacity:0}
+.s1{--tx:0px;--ty:-230px}.s2{--tx:200px;--ty:-115px}.s3{--tx:200px;--ty:115px}.s4{--tx:0px;--ty:230px}.s5{--tx:-200px;--ty:115px}.s6{--tx:-200px;--ty:-115px}
+.on .spoke{transform:translate(var(--tx),var(--ty))}
+@keyframes orbit{from{opacity:0;transform:translate(0,0) scale(.6)}to{opacity:1;transform:translate(var(--tx),var(--ty))}}
+@media(max-width:600px){.s1{--ty:-190px}.s4{--ty:190px}.s2,.s3{--tx:140px}.s5,.s6{--tx:-140px}.spoke{width:120px;margin-left:-60px}}
+/* compare */
+.bars{margin-top:26px;display:grid;gap:14px}
+.bar{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;font-size:15px}
+.bar .t{height:30px;border-radius:8px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform-origin:left;transform:scaleX(0);display:flex;align-items:center;padding-left:12px;color:#111;font-weight:600;font-size:13px}
+.bar .t.g{background:#3a3a44;color:#ddd}
+.on .bar .t{animation:fill 1.1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fill{to{transform:none}}
+/* ui */
+.hud{position:fixed;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08)}
+.hud i{display:block;height:100%;background:var(--gold);width:0;transition:width .3s linear}
+.ctl{position:fixed;right:18px;bottom:16px;display:flex;gap:8px;font-size:12px;color:var(--muted)}
+.ctl button{background:#1a1a20;color:#eee;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12px}
+.hint{position:fixed;left:18px;bottom:14px;font-size:12px;color:var(--muted)}
+.tagrow{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.chip{border:1px solid var(--gold);color:var(--gold2);border-radius:999px;padding:6px 14px;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="stage">
+
+<!-- 1 title -->
+<div class="scene on" data-t="5000"><div class="inner">
+  <div class="eyebrow rise d1">Concept walkthrough · 2026</div>
+  <h1 class="rise d2">VAULT<span>.</span></h1>
+  <p class="sub rise d3">Move better. Recover faster. Compete.</p>
+  <div class="tagrow"><span class="chip rise d4">Hyrox</span><span class="chip rise d5">Reformer</span><span class="chip rise d6">Combat</span><span class="chip rise d7">Gymnastics</span><span class="chip rise d8">Recovery</span></div>
+</div></div>
+
+<!-- 2 shift -->
+<div class="scene" data-t="7000"><div class="inner">
+  <div class="eyebrow rise d1">01 · The shift</div>
+  <h2 class="rise d2">People train differently now</h2>
+  <p class="sub rise d3">Less punishment, more movement. Strength that keeps the body mobile and recoverable.</p>
+  <div class="bars">
+    <div class="bar rise d4"><span>Hyrox searches</span><div class="t">+123% year on year</div></div>
+    <div class="bar rise d5"><span>Delhi Hyrox</span><div class="t" style="width:80%">2,600+ athletes, +50% vs Mumbai</div></div>
+    <div class="bar rise d6"><span>Recovery floor space</span><div class="t" style="width:60%">5–10% → 20–30% of the club</div></div>
+    <div class="bar rise d7"><span>India market</span><div class="t" style="width:95%">₹16,200 cr → ₹37,700 cr by 2030</div></div>
+  </div>
+</div></div>
+
+<!-- 3 floor plan -->
+<div class="scene" data-t="9000"><div class="inner">
+  <div class="eyebrow rise d1">02 · One need, one room</div>
+  <h2 class="rise d2">The floor plan</h2>
+  <div class="plan">
+    <div class="zone z1 d1"><b>Strength Floor</b><span>~2,400 sq ft</span></div>
+    <div class="zone z2 d2"><b>Hyrox Turf</b><span>20 m sled lane · ~1,500</span></div>
+    <div class="zone z3 d3"><b>Combat Room</b><span>~800</span></div>
+    <div class="zone z4 d4"><b>Recovery Wing</b><span>sauna · plunge · ~1,200</span></div>
+    <div class="zone z5 d5"><b>Reformer Studio</b><span>8 reformers · ~550</span></div>
+    <div class="zone z6 d6"><b>Movement Studio</b><span>rig · sprung floor · ~900</span></div>
+    <div class="zone z7 d7"><b>Cardio Deck</b><span>~700</span></div>
+    <div class="zone z8 d8"><b>Mobility Studio</b><span>~600</span></div>
+    <div class="zone z9 d9"><b>Performance Lab</b><span>~250</span></div>
+    <div class="zone z10 d10"><b>Lounge · Café · Lockers</b><span>~1,500</span></div>
+  </div>
+</div></div>
+
+<!-- 4 departments wheel -->
+<div class="scene" data-t="8000"><div class="inner">
+  <div class="eyebrow rise d1">03 · Structure</div>
+  <h2 class="rise d2">Six departments, one club</h2>
+  <div class="wheel">
+    <div class="hub">VAULT</div>
+    <div class="spoke s1 d2"><b>Strength</b><small>Lifting · PT</small></div>
+    <div class="spoke s2 d3"><b>Hybrid</b><small>Hyrox · Run club</small></div>
+    <div class="spoke s3 d4"><b>Movement</b><small>Gymnastics · Calisthenics</small></div>
+    <div class="spoke s4 d5"><b>Combat</b><small>Boxing · Muay Thai · BJJ</small></div>
+    <div class="spoke s5 d6"><b>Pilates</b><small>Reformer · Mobility</small></div>
+    <div class="spoke s6 d7"><b>Recovery</b><small>Sauna · Plunge · Lab</small></div>
+  </div>
+</div></div>
+
+<!-- 5 member journey flow -->
+<div class="scene" data-t="8000"><div class="inner">
+  <div class="eyebrow rise d1">04 · Member journey</div>
+  <h2 class="rise d2">From walk-in to race day</h2>
+  <div class="flow">
+    <div class="node rise d2"><div class="d">Arrive</div><p>Café reception, glass wall into recovery</p></div>
+    <div class="arrow d3"></div>
+    <div class="node rise d3"><div class="d">Test</div><p>Body comp + movement screen on day one</p></div>
+    <div class="arrow d4"></div>
+    <div class="node rise d4"><div class="d">Assign</div><p>Placed into a department with a head coach</p></div>
+    <div class="arrow d5"></div>
+    <div class="node rise d5"><div class="d">Train</div><p>Classes + floor, daily mobility</p></div>
+    <div class="arrow d6"></div>
+    <div class="node rise d6"><div class="d">Recover</div><p>Sauna, plunge, compression</p></div>
+    <div class="arrow d7"></div>
+    <div class="node rise d7"><div class="d">Compete</div><p>Monthly sim, Hyrox team, re-test</p></div>
+  </div>
+</div></div>
+
+<!-- 6 vs -->
+<div class="scene" data-t="8000"><div class="inner">
+  <div class="eyebrow rise d1">05 · Position</div>
+  <h2 class="rise d2">A level above</h2>
+  <div class="bars">
+    <div class="bar rise d3"><span>Anytime Fitness</span><div class="t g" style="width:45%">24/7 open gym · no programmes</div></div>
+    <div class="bar rise d4"><span>Cult.fit</span><div class="t g" style="width:60%">Volume classes · cheapest · loud</div></div>
+    <div class="bar rise d5"><span>VAULT</span><div class="t" style="width:100%">Departments · recovery wing · testing · race team</div></div>
+  </div>
+  <p class="sub rise d6" style="margin-top:26px">Cult gets you to work out. VAULT gets you to move better, recover faster and compete.</p>
+</div></div>
+
+<!-- 7 end -->
+<div class="scene" data-t="6000"><div class="inner" style="text-align:center">
+  <h1 class="rise d1" style="font-size:clamp(70px,14vw,180px)">VAULT<span>.</span></h1>
+  <p class="sub rise d2" style="margin:0 auto">Opening 2027</p>
+</div></div>
+
+</div>
+<div class="hud"><i id="bar"></i></div>
+<div class="hint">Space = pause · ← → = scenes · R = restart</div>
+<div class="ctl"><button onclick="prev()">◀</button><button id="pp" onclick="toggle()">Pause</button><button onclick="next()">▶</button></div>
+<script>
+const scenes=[...document.querySelectorAll('.scene')];let i=0,timer,paused=false,start,dur;
+const bar=document.getElementById('bar');
+function show(n){scenes[i].classList.remove('on');i=(n+scenes.length)%scenes.length;const s=scenes[i];s.classList.add('on');
+ // restart animations
+ s.querySelectorAll('.rise,.zone,.spoke,.arrow,.t').forEach(el=>{el.style.animation='none';el.offsetHeight;el.style.animation='';});
+ dur=+s.dataset.t;start=performance.now();clearTimeout(timer);if(!paused)timer=setTimeout(()=>show(i+1),dur);}
+function next(){show(i+1)}function prev(){show(i-1)}
+function toggle(){paused=!paused;document.getElementById('pp').textContent=paused?'Play':'Pause';if(paused)clearTimeout(timer);else timer=setTimeout(()=>show(i+1),Math.max(0,dur-(performance.now()-start)));}
+function tick(){if(!paused){bar.style.width=Math.min(100,(performance.now()-start)/dur*100)+'%'}requestAnimationFrame(tick)}
+document.addEventListener('keydown',e=>{if(e.code==='Space'){e.preventDefault();toggle()}if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();if(e.key.toLowerCase()==='r')show(0)});
+show(0);tick();
+</script>
+</body>
+</html>
